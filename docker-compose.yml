@@ -4,14 +4,27 @@ services:
     build: ./backend/python-service
     ports:
       - "5000:5000"
-  go-service:
-    build: ./backend/go-service
-    ports:
-      - "8080:8080"
+    depends_on:
+      - mysql-db
   frontend:
-    image: nginx:latest 
+    image: nginx:latest
     ports:
       - "80:80"
     volumes:
       - ./frontend:/usr/share/nginx/html
+  go-service:
+    build: ./backend/go-service
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql-db
+  mysql-db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: example_password
+      MYSQL_DATABASE: example_database
+      MYSQL_USER: example_user
+      MYSQL_PASSWORD: example_password
+    ports:
+      - "3306:3306"
 
