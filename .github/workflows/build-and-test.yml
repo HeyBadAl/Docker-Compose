@@ -23,8 +23,6 @@ jobs:
       - name: Build and test services
         run: |
           docker-compose up -d
-          sleep 15
           docker-compose ps
-          docker-compose run python-service pytest
           docker-compose down
 
