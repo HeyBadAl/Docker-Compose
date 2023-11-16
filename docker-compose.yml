@@ -8,4 +8,10 @@ services:
     build: ./backend/go-service
     ports:
       - "8080:8080"
+  frontend:
+    image: nginx:latest 
+    ports:
+      - "80:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html
 
