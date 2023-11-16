@@ -25,6 +25,6 @@ jobs:
           docker-compose up -d
           sleep 15
           docker-compose ps
-          docker-compose run docker-compose_python-service_1 pytest
+          docker-compose run python-service pytest
           docker-compose down
 
